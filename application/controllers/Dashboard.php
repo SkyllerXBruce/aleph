@@ -1,8 +1,8 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Controlador del DashBoard_Sistema
-class Dashboard_Sistema extends CI_Controller {
+// Controlador del DashBoard
+class Dashboard extends CI_Controller {
     public function __construct(){
         parent::__construct();
     }
@@ -24,6 +24,6 @@ class Dashboard_Sistema extends CI_Controller {
             'content' => $view,
             'footer' => $this->load->view('layout/footer','',TRUE),
         );
-        $this->load->view('dashboard_sistema',$data);
+        $this->load->view('dashboard',$data);
     }
 }

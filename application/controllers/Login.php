@@ -60,7 +60,7 @@ class Login extends CI_Controller {
 			// Mensaje Temporal de Bienvenida
 			$this->session->set_flashdata('msg','Bienvenido '.$datos['rol'].' '.$datos['nombre_usuario']);
 			// Redirecciona a la pagina Correspondiente dependiendo el rol
-			echo json_encode(array("url" => base_url('dashboard_sistema')));
+			echo json_encode(array("url" => base_url('dashboard')));
 		}
 	}
 

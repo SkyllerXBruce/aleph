@@ -83,7 +83,7 @@ class Users extends CI_Controller {
             'content' => $view,
             'footer' => $this->load->view('layout/footer','',TRUE),
         );
-        $this->load->view('dashboard_sistema',$data);
+        $this->load->view('dashboard',$data);
     }
 
 }

@@ -12,4 +12,10 @@ class InfoUsers extends CI_Model{
         $this->db->trans_complete();
         return !$this->db->trans_status() ? false : true;
     }
+
+    public function getUsers(){
+        $sql = $this->db->get('USUARIOS'); 
+        return $sql->result();
+    }
+
 }

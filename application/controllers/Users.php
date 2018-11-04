@@ -10,7 +10,9 @@ class Users extends CI_Controller {
     }
 
     public function index(){
-    	echo "Todo bien";
+        $data = $this->InfoUsers->getUsers();
+
+    	$this->getTemplate($this->load->view('admin_sistema/show_users',array('data' => $data),true));
     }
 
     public function create(){
@@ -63,7 +65,7 @@ class Users extends CI_Controller {
     }
 
     public function sendEmail($data){
-        $this->email->from('aleph.sistema@gmail.com', 'Aleph Corp');
+        $this->email->from('aleph.sistema@alephcorp.com', 'Aleph Corp');
         $this->email->to($data['correo']);
         $this->email->subject('Bienvenido al Sistema de Encuestas');
         $vista = $this->load->view('email/newuser',$data,TRUE);

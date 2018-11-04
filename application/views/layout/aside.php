@@ -19,7 +19,7 @@
 			</div>
 		<?php endif; ?>
 		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			<a href="<?=base_url('users')?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' ? 'active' : ''; ?>"  data-toggle="pill">Usuarios</a>
+			<a href="<?=base_url('users')?>" class="nav-link <?= $this->uri->segment(2) == '' ? 'active' : ''; ?>"  data-toggle="pill">Usuarios</a>
 			<a href="<?=base_url('users/create')?>" class="nav-link <?= $this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'store' ? 'active' : ''; ?>" data-toggle="pill">Alta de Usuarios</a>
 		</div>
 	</div>

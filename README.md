@@ -1,1 +1,3 @@
-# aleph
+# Aleph Corp.
+
+Sistema Encuestador

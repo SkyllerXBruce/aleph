@@ -8,7 +8,20 @@ class Dashboard extends CI_Controller {
     }
     public function index(){
         if($this->session->userdata('is_logged')){
-            $vista = $this->load->view('admin/show_users','',TRUE);
+            switch ($this->session->userdata('rol')) {
+				case "Administrador de Sistema":
+                    $vista = $this->load->view('admin_sistema/show_users','',TRUE);
+					break;
+				case "Administrador de Estudio":
+                    $vista = $this->load->view('admin_estudio/estudio','',TRUE);
+					break;
+				case "Encuestador":
+                    $vista = $this->load->view('encuestador/encuestador','',TRUE);
+					break;
+				case "Analista":
+                    $vista = $this->load->view('analista/analista','',TRUE);
+					break;
+			}
             $this->getTemplate($vista);
         }else{
             show_404();

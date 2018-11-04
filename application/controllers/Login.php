@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct(); // Constructor padre de CI_Controller
 		// Cargamos Bibliotecas, Helpers y Modelos a Usar
-		$this->load->library(array('form_validation','session'));
+		$this->load->library(array('form_validation'));
 		$this->load->helper(array('auth/login_rules'));
 		$this->load->model('Auth');
 	}
@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 			$this->session->set_userdata($datos);
 			// Mensaje Temporal de Bienvenida
 			$this->session->set_flashdata('msg','Bienvenido '.$datos['rol'].' '.$datos['nombre_usuario']);
-			// Redirecciona a la pagina Correspondiente dependiendo el rol
+			// Redirecciona al Dashboard
 			echo json_encode(array("url" => base_url('dashboard')));
 		}
 	}

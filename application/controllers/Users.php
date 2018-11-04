@@ -14,7 +14,7 @@ class Users extends CI_Controller {
     }
 
     public function create(){
-        $vista = $this->load->view('admin/create_user','',true);
+        $vista = $this->load->view('admin_sistema/create_user','',true);
         $this->getTemplate($vista);
     }
 
@@ -58,7 +58,7 @@ class Users extends CI_Controller {
 
         }
 
-        $vista = $this->load->view('admin/create_user','',true);
+        $vista = $this->load->view('admin_sistema/create_user','',true);
         $this->getTemplate($vista); 
     }
 

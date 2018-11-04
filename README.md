@@ -2,4 +2,4 @@
 
 Sistema Encuestador 
 
-Este es un sistema de encuestas basado en el Framewor Codeigniter 
+Este es un sistema web de encuestas basado en el Framewor Codeigniter cuyo proposito es Manejar diferentes tipos de encuestas

@@ -1429,7 +1429,7 @@ body.outlook p {
                                       </tr>
                                     </tbody>
                                   </table>
-                                  <center data-parsed=""> <img src="<?= base_url('assets/imgs/encuestas.png') ?>" align="center" class="float-center"> </center>
+                                  <center data-parsed=""> <img src="<?= base_url('assets/img/logo.png') ?>" align="center" class="float-center"> </center>
                                   <table class="spacer">
                                     <tbody>
                                       <tr>

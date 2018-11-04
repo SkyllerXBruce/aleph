@@ -63,14 +63,11 @@ class Users extends CI_Controller {
     }
 
     public function sendEmail($data){
-        $this->email->from('sistema@aleph.com', 'Aleph Corp');
+        $this->email->from('aleph.sistema@gmail.com', 'Aleph Corp');
         $this->email->to($data['correo']);
-
-        $this->email->subject('Información de la Cuenta');
-        $vista = $this->load->view('email/welcome',$data,TRUE);
-
+        $this->email->subject('Bienvenido al Sistema de Encuestas');
+        $vista = $this->load->view('email/newuser',$data,TRUE);
         $this->email->message($vista);
-
         $this->email->send();
     }
 

@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct(); // Constructor padre de CI_Controller
 		// Cargamos Bibliotecas, Helpers y Modelos a Usar
-		$this->load->library(array('form_validation'));
+		$this->load->library(array('form_validation','session'));
 		$this->load->helper(array('auth/login_rules'));
 		$this->load->model('Auth');
 	}

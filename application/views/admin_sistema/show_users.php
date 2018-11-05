@@ -1,5 +1,5 @@
 <!-- Titulo de los Usuarios registrados -->
-<h1>Lista de Usuarios Registrados</h1>
+<h3>Lista de Usuarios Registrados</h3>
 <!-- Creamos la Tabla -->
 <table class="table">
 	<!-- Titulo de las Columnas con Estilo para la Tabla -->

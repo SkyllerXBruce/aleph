@@ -1,5 +1,5 @@
 <?php
-// Varifica si la Funcion del helper existe 
+// Verifica si la Funcion del helper existe 
 if(!function_exists('getLoginRules')){
 	// Funcion que regresa las reglas que van a tener los datos ingresados del formulario Login
 	function getLoginRules(){

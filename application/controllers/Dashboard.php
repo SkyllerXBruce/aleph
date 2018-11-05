@@ -7,6 +7,8 @@ class Dashboard extends CI_Controller {
     // Constructor del Dasboard
     public function __construct(){
         parent::__construct(); // Constructor padre de CI_Controller
+        // Corgamos el Modelo Info Users
+        $this->load->model('InfoUsers');
     }
 
     // Método index para Cagar vista del Dasboard
@@ -15,8 +17,10 @@ class Dashboard extends CI_Controller {
         if($this->session->userdata('is_logged')){
             // Dependiendo el Rol muestra su vista correspondiente
             switch ($this->session->userdata('rol')) {
-				case "Administrador de Sistema":
-                    $vista = $this->load->view('admin_sistema/show_users','',TRUE);
+                case "Administrador de Sistema":
+                    // Cargamos a todos los Usuarios en una variable
+                    $data = $this->InfoUsers->getUsers();
+                    $vista = $this->load->view('admin_sistema/show_users',array('data' => $data),TRUE);
 					break;
 				case "Administrador de Estudio":
                     $vista = $this->load->view('admin_estudio/estudio','',TRUE);

@@ -27,7 +27,7 @@ class Login extends CI_Controller {
 		$this->form_validation->set_error_delimiters('','');
 		$rules = getLoginRules(); // Carga las Reglas del helper login_rules en una variable
 		$this->form_validation->set_rules($rules); // Se agregan las Reglas al Formulario
-		// Validacion, si hay un problema de entrada manda error correspondiente, si no da acceso al Dashboard correspondiente
+		// Validacion del Formulario, si hay un problema de sintaxis manda el error correspondiente, si no accede al Dashboard
 		if ($this->form_validation->run() == FALSE){
 			// Muestra error 400 de Ajax en assets/js/auth/login.js
 			$errors = array(

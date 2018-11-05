@@ -67,7 +67,7 @@ class Users extends CI_Controller {
                 $this->sendEmail($user);
                 // Mensaje temporal de que el usuario fue registrado
                 $this->session->set_flashdata('msg','El usuario a sido registrado'); 
-                redirect(base_url('users')); // redirige a la vista del controlador user
+                redirect(base_url('dashboard')); // redirige a la vista del controlador user
             }
         }
         // Si hay un error se mantiene en la vista Create user para que los datos no se borren

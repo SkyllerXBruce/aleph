@@ -1,5 +1,6 @@
-<!-- ASIDE -->
+<!-- Aside -->
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+	<!-- Caracteristicas de la Barra -->
 	<style>
 		.sidebar-sticky{
 			position: -webkit-sticky;
@@ -19,7 +20,7 @@
 			</div>
 		<?php endif; ?>
 		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			<a href="<?=base_url('users')?>" class="nav-link <?= $this->uri->segment(2) == '' ? 'active' : ''; ?>"  data-toggle="pill">Usuarios</a>
+			<a href="<?=base_url('dashboard')?>" class="nav-link <?= $this->uri->segment(2) == '' ? 'active' : ''; ?>"  data-toggle="pill">Usuarios</a>
 			<a href="<?=base_url('users/create')?>" class="nav-link <?= $this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'registrarUsuario' ? 'active' : ''; ?>" data-toggle="pill">Alta de Usuarios</a>
 		</div>
 	</div>

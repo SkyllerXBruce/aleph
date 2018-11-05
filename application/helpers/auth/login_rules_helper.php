@@ -10,7 +10,7 @@ if(!function_exists('getLoginRules')){
         'rules' => 'required|valid_email', // reglas separadas por un pipe |
         'errors' => array(
 					'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
-					'valid_email' => 'El formato de %s es invalido.' //mnda error si el formato de email no es valido
+					'valid_email' => 'El formato de %s es invalido.' //manda error si el formato de email no es valido
 					)
         ),
         array(
@@ -18,7 +18,7 @@ if(!function_exists('getLoginRules')){
           'label' => 'Contraseña',
           'rules' => 'required',
           'errors' => array(
-						'required' => 'El %s es requerido.', 
+						'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
 					)
 				)     
     );

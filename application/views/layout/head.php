@@ -1,4 +1,4 @@
-<!-- Formulario del Dashboard -->
+<!-- Inicio del Formulario -->
 <!DOCTYPE html>
 <html lang="es-mx">
 <!-- Caracteristicas del Encabezado -->    

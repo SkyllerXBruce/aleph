@@ -21,32 +21,36 @@ class Dashboard extends CI_Controller {
                     // Cargamos a todos los Usuarios en una variable
                     $data = $this->InfoUsers->getUsers();
                     $vista = $this->load->view('admin_sistema/show_users',array('data' => $data),TRUE);
+                    $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Administrador de Estudio":
                     $vista = $this->load->view('admin_estudio/estudio','',TRUE);
+                    $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Encuestador":
                     $vista = $this->load->view('encuestador/encuestador','',TRUE);
+                    $links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Analista":
                     $vista = $this->load->view('analista/analista','',TRUE);
+                    $links = $this->load->view('layout/aside_analista','',TRUE); // Barra lateral de navegacion
 					break;
             }
             // Carga el Template con la vista correspondiente
-            $this->getTemplate($vista);
+            $this->getTemplate($vista,$links);
         }else{
             show_404(); // Error 404 de Codeigniter
         }
     }
 
     // Método Template que Carga todos los elemento de las Vistas
-    public function getTemplate($view){
+    public function getTemplate($view,$links){
         $data['title'] = 'Administardor del Sistema'; // titulo del Encabezado
         // Partes de la vista 
         $data = array(
             'head' => $this->load->view('layout/head',$data,TRUE), // Encabezado
             'nav' => $this->load->view('layout/nav','',TRUE), // Barra superior de navegacion
-            'aside' => $this->load->view('layout/aside','',TRUE), // Barra lateral de navegacion
+            'aside' => $links, // Barra lateral de navegacion
             'content' => $view, // Contenido de la pagina
             'footer' => $this->load->view('layout/footer','',TRUE), // Pie de pagina
         );

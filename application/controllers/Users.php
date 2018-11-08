@@ -16,28 +16,32 @@ class Users extends CI_Controller {
     public function index(){
         // Cargamos a todos los Usuarios en una variable
         $data = $this->InfoUsers->getUsers();
-        // Carga el Template con la vista Show Users y los datos de todos los usuarios 
-    	$this->getTemplate($this->load->view('admin_sistema/show_users',array('dat' => $data),true)); 
+        $vista = $this->load->view('admin_sistema/show_users',array('data' => $data),TRUE);
+        $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
+    	$this->getTemplate($vista,$links); 
     }
 
     // Método create que Carga la Vista para la Creacion de Usuarios  
     public function create(){
         $vista = $this->load->view('admin_sistema/create_user','',true);
-        $this->getTemplate($vista); // Carga el Template con la vista correspondiente
+        $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     // Método create que Carga la Vista para la Creacion de Usuarios  
     public function edit($parametro){
         $id['user'] = $parametro;
         $vista = $this->load->view('admin_sistema/edit_user',$id,true);
-        $this->getTemplate($vista); // Carga el Template con la vista correspondiente
+        $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     // Método create que Carga la Vista para la Creacion de Usuarios  
     public function delete($parametro){
         $id['user'] = $parametro;
         $vista = $this->load->view('admin_sistema/delete_user',$id,true);
-        $this->getTemplate($vista); // Carga el Template con la vista correspondiente
+        $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     // Método para registrar un Usuario
@@ -86,7 +90,8 @@ class Users extends CI_Controller {
         }
         // Si hay un error se mantiene en la vista Create user para que los datos no se borren
         $vista = $this->load->view('admin_sistema/create_user','',true);
-        $this->getTemplate($vista); // Carga el Template con la vista correspondiente
+        $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     // Método para mandar un email al usuario
@@ -100,13 +105,13 @@ class Users extends CI_Controller {
     }
 
     // Método Template que Carga todos los elemento de las Vistas
-    public function getTemplate($view){
+    public function getTemplate($view,$links){
         $data['title'] = 'Administardor del Sistema'; // titulo del Encabezado
         // Partes de la vista 
         $data = array(
             'head' => $this->load->view('layout/head',$data,TRUE), // Encabezado
             'nav' => $this->load->view('layout/nav','',TRUE), // Barra superior de navegacion
-            'aside' => $this->load->view('layout/aside','',TRUE), // Barra lateral de navegacion
+            'aside' => $links, // Barra lateral de navegacion
             'content' => $view, // Contenido de la pagina
             'footer' => $this->load->view('layout/footer','',TRUE), // Pie de pagina
         );

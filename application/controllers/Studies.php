@@ -17,7 +17,9 @@ class Studies extends CI_Controller {
 
     // Método create que Carga la Vista para la Creacion de Usuarios  
     public function create(){
-        
+        $vista = $this->load->view('admin_estudio/create_study','',TRUE);
+        $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     // Método Template que Carga todos los elemento de las Vistas

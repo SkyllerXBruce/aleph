@@ -23,7 +23,7 @@
       	<td><?= $item->Status ?></td>
 				<td><?= $item->Rol ?></td>
 				<!-- Botones de Editar y Eliminar -->
-      	<td><a class="btn btn-warning" href="<?=base_url('users/edit/'.$item->Id)?>" role="button">Editar</a> / <a class="btn btn-danger" href="<?=base_url('users/edit/'.$item->Id)?>" role="button">Eliminar</a></td>
+      	<td><a class="btn btn-warning" href="<?=base_url('users/edit/'.$item->Id)?>" role="button">Editar</a> / <a class="btn btn-danger" href="<?=base_url('users/delete/'.$item->Id)?>" role="button">Eliminar</a></td>
     	</tr>
     <?php endforeach; ?>
   </tbody>

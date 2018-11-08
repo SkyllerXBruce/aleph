@@ -26,6 +26,20 @@ class Users extends CI_Controller {
         $this->getTemplate($vista); // Carga el Template con la vista correspondiente
     }
 
+    // Método create que Carga la Vista para la Creacion de Usuarios  
+    public function edit($parametro){
+        $id['user'] = $parametro;
+        $vista = $this->load->view('admin_sistema/edit_user',$id,true);
+        $this->getTemplate($vista); // Carga el Template con la vista correspondiente
+    }
+
+    // Método create que Carga la Vista para la Creacion de Usuarios  
+    public function delete($parametro){
+        $id['user'] = $parametro;
+        $vista = $this->load->view('admin_sistema/delete_user',$id,true);
+        $this->getTemplate($vista); // Carga el Template con la vista correspondiente
+    }
+
     // Método para registrar un Usuario
     public function registrarUsuario(){
         // Toma la informacion de los campos y la guarda en las variables corespondientes

@@ -21,8 +21,8 @@
 		<?php endif; ?>
 		<!-- Links de la Barra Lateral -->
 		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			<a href="<?=base_url('dashboard')?>" class="nav-link <?= $this->uri->segment(2) == '' ? 'active' : ''; ?>"  data-toggle="pill">Estudios</a>
-			<a href="<?=base_url('users/create')?>" class="nav-link <?= $this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'registrarUsuario' ? 'active' : ''; ?>" data-toggle="pill">Alta de Estudios</a>
+			<a href="<?=base_url('studies')?>" class="nav-link <?= $this->uri->segment(2) == '' ? 'active' : ''; ?>"  data-toggle="pill">Estudios</a>
+			<a href="<?=base_url('studies/create')?>" class="nav-link <?= $this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'registrarUsuario' ? 'active' : ''; ?>" data-toggle="pill">Alta de Estudios</a>
 		</div>
 	</div>
 </nav>

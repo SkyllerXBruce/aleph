@@ -52,7 +52,8 @@ class Users extends CI_Controller {
         $rol = $this->input->post('rol');
         $name = $this->input->post('name');
         $lastname = $this->input->post('lastname');
-        $esp = $this->input->post('esp');
+        $tel = $this->input->post('tel');
+        $dir = $this->input->post('dir');
         $edad = $this->input->post('edad');
         $matricula = $this->input->post('matricula');
         // Carga las Reglas del helper users_rules y las agrega al Formulario
@@ -67,7 +68,6 @@ class Users extends CI_Controller {
                 'contrasena' => random_string('alnum',8), // Crea una contraseña aleatoria alphanumerica de 8 caracteres
                 'correo' => $correo,
                 'rol' => $rol,
-                'status' => "En linea",
             );
             // Datos para la tabla Info Usuarios
             $user_info = array(
@@ -75,7 +75,8 @@ class Users extends CI_Controller {
                 'apellidos' => $lastname,
                 'matricula' => $matricula,
                 'edad' =>  $edad,
-                'especialidad' => $esp,
+                'telefono' => $tel,
+                'direccion' => $dir,
             );
             // Verifica si los datos fueron agregados Correctamente, si no manda error 500 de Codeigniter 
 			if(!$this->InfoUsers->save($user,$user_info)){

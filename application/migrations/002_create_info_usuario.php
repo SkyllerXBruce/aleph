@@ -31,16 +31,22 @@ class Migration_create_info_usuario extends CI_Migration {
                 'constraint' => 2,
                 'null' => TRUE
             ),
+            // Caracteristicas de la direccion del Usuario
+            'Direccion' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '250',
+                'null' => TRUE
+            ),
+            // Caracteristicas de la edad del usuario
+            'Telefono' => array(
+                'type' => 'INT',
+                'constraint' => 12,
+                'null' => TRUE
+            ),
             // Caracteristicas de la Matricula del usuario
             'Matricula' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100',
-                'null' => TRUE
-            ),
-            // Caracteristicas de la epecialidad del Usuario
-            'Especialidad' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '150',
                 'null' => TRUE
             ),
             // Caracteristicas del Identitificador Relacionado a la Tabla USUARIOS 

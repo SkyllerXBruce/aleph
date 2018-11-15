@@ -30,11 +30,6 @@ class Migration_create_user extends CI_Migration {
                                 'constraint' => '100',
                                 'null' => TRUE
                         ),
-                        // Caracteristicas del status del usuario
-                        'Status' => array(
-                                'type' => 'ENUM("En linea","Desconectado")',
-                                'null' => TRUE
-                        ),
                         // Caracteristicas del Rol que el Usuario va Desempeñar 
                         'Rol' => array(
                                 'type' => 'ENUM("Administrador de Sistema","Administrador de Estudio","Encuestador","Analista")',
@@ -43,6 +38,14 @@ class Migration_create_user extends CI_Migration {
                 ));
                 $this->dbforge->add_key('Id', TRUE); // llave primaria de la tabla
                 $this->dbforge->create_table('USUARIOS'); // Se crea la tabla USUARIOS
+                $first_user = array(
+                        'Id' => 1,
+                        'Nombre_Usuario' => 'admin',
+                        'Correo' => 'admin@algo.com',
+                        'Contrasena' => '1234',
+                        'Rol' => 'Administrador de Sistema'
+                );
+                $this->db->insert("USUARIOS",$first_user);
         }
 
         // Método para eliminar la tabla

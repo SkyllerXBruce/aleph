@@ -51,7 +51,7 @@
 			<!-- Atributos para los Apellidos del Usuario -->
 			<div class="col-5">
 				<label for="">Apellidos</label>
-				<input name="lastname" class="form-control" type="text" placeholder="Inserten sus apellidos" value="<?= set_value('lastname') ?>">
+				<input name="lastname" class="form-control" type="text" placeholder="Inserte sus apellidos" value="<?= set_value('lastname') ?>">
 				<div class="text-danger"><?= form_error('lastname') ?></div>
 			</div>
 			<!-- Atributos para la Edad del Usuario -->
@@ -61,19 +61,21 @@
 				<div class="text-danger"><?= form_error('edad') ?></div>
 			</div>
 		</div>
-		<!-- Fila de Datos de la Informacion Especializada del Usuario -->
+		<!-- Fila de Datos de la Informacion de Localizacion del Usuario -->
     	<div class="form-row">
-			<!-- Atributos para la Especialidad del Usuario -->
-            <div class="col-4">
-                <label for="">Especialidad</label>
-                <select name="esp" class="custom-select">
-                    <option selected value="">Seleccione el Especialidad</option>
-                    <option <?= set_value('esp') == 'Administrador de Sistema' ? 'selected' : ''; ?> value="Administrador de Sistema">Administrador de Sistemas</option>
-                    <option <?= set_value('esp') == 'Administrador de Estudio' ? 'selected' : ''; ?> value="Administrador de Estudio">Administrador de Estudios</option>
-                    <option <?= set_value('esp') == 'Encuestador' ? 'selected' : ''; ?> value="Encuestador">Encuestador</option>
-                    <option <?= set_value('esp') == 'Analista' ? 'selected' : ''; ?> value="Analista">Analista</option>
-                </select>
-                <div class="text-danger"><?= form_error('esp') ?></div>
+			<!-- Atributos para la dirreccion del Usuario -->
+			<div class="col">
+				<label for="">Dirección</label>
+				<input name="dir" class="form-control" type="text" placeholder="Inserte su dirección Completa (calle, #,col, del, cp)" value="<?= set_value('dir') ?>">
+				<div class="text-danger"><?= form_error('dir') ?></div>
+			</div>
+    	</div>
+		<div class="form-row">
+			<!-- Atributos para el telefono del Usuario -->
+			<div class="col">
+				<label for="">Telefono</label>
+				<input name="tel" type="text" class="form-control" placeholder="Ingrese su telefono (ejemplo 5514215212)" value="<?= set_value('tel') ?>">
+				<div class="text-danger"><?= form_error('tel') ?></div>
 			</div>
 			<!-- Atributos para la Matricula del Usuario -->
     		<div class="col">
@@ -81,7 +83,7 @@
 				<input name="matricula" type="text" class="form-control" placeholder="Ingrese su Matricula" value="<?= set_value('matricula') ?>">
 				<div class="text-danger"><?= form_error('matricula') ?></div>
 			</div>
-    	</div>
+		</div>
 	</div>
 	<!-- Boton para el Agregar Todos los Datos -->
     <div class="form-group">

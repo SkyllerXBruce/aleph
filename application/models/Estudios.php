@@ -7,9 +7,15 @@ class Estudios extends CI_Model{
 		$this->load->database();
 	}
 
-	// Método para agregar los datos
+	// Método para agregar los datos del estudio
 	public function save($data){
 		return !$this->db->insert('ESTUDIOS',$data) ? false : true; 
+	}
+
+	// Métodos para obtener todos los datos de la tabla estudios
+	public function getStudies(){
+		$sql = $this->db->get('ESTUDIOS'); 
+		return $sql->result(); // regresa todos los datos 
 	}
 	
 	// Métodos para obtener todos los encuestadores de la tabla usuarios

@@ -14,7 +14,8 @@ class Studies extends CI_Controller {
 
     // Método index para Cagar vista de Show Users
     public function index(){
-        $vista = $this->load->view('admin_estudio/estudio','',TRUE);
+        $dataestudios = $this->Estudios->getStudies();
+        $vista = $this->load->view('admin_estudio/show_studies',array('data' => $dataestudios),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }

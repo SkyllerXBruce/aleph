@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
     public function __construct(){
         parent::__construct(); // Constructor padre de CI_Controller
         // Corgamos el Modelo Info Users
-        $this->load->model('InfoUsers');
+        $this->load->model('InfoUsers','Estudios');
     }
 
     // Método index para Cagar vista del Dasboard
@@ -24,7 +24,8 @@ class Dashboard extends CI_Controller {
                     $links = $this->load->view('layout/aside_sistema','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Administrador de Estudio":
-                    $vista = $this->load->view('admin_estudio/estudio','',TRUE);
+                    $dataestudios = $this->Estudios->getStudies();
+                    $vista = $this->load->view('admin_estudio/show_studies',array('data' => $dataestudios),TRUE);
                     $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Encuestador":

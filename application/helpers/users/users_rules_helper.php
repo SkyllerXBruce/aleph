@@ -57,19 +57,10 @@ if(!function_exists('getCreateUserRules')){
                 )
             ),
             array(
-                'field' => 'dir',
-                'label' => 'Direccion',
-                'rules' => 'required',
-                'errors' => array(
-                    'required' => 'La %s es requerida.', // manda error si no hay datos encontrados
-                )
-            ),
-            array(
                 'field' => 'tel',
                 'label' => 'Telefono',
-                'rules' => 'required|is_natural_no_zero',
+                'rules' => 'is_natural_no_zero',
                 'errors' => array(
-                    'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
                     'is_natural_no_zero' => 'El %s no es Valido.' // manda error si el dato no es un numero natural
                 )
             ),

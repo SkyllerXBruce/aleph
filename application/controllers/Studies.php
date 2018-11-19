@@ -8,7 +8,7 @@ class Studies extends CI_Controller {
         parent::__construct(); // Constructor padre de CI_Controller
         // Cargamos Bibliotecas, Helpers y Modelos a Usar
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('studies/study_rules'));
+        $this->load->helper(array('studies/study_rules','studies/quest_rules'));
         $this->load->model('Estudios');
     }
 
@@ -22,10 +22,10 @@ class Studies extends CI_Controller {
 
     // Método create que Carga la Vista para la Creacion de Usuarios  
     public function create(){
-        $dataencusta = $this->Estudios->getEncuestador();
+        $dataencuesta = $this->Estudios->getEncuestador();
         $dataanalista = $this->Estudios->getAnalista();
         $vista = $this->load->view('admin_estudio/create_study',array(
-            'dataencuestador' => $dataencusta,
+            'dataencuestador' => $dataencuesta,
             'dataanalista' => $dataanalista),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
@@ -60,17 +60,40 @@ class Studies extends CI_Controller {
             }
         }
         // Si hay un error se mantiene en la vista de Alta de Estudiosser para que los datos no se borren
-        $dataencusta = $this->Estudios->getEncuestador();
+        $dataencuesta = $this->Estudios->getEncuestador();
         $dataanalista = $this->Estudios->getAnalista();
         $vista = $this->load->view('admin_estudio/create_study',array(
-            'dataencuestador' => $dataencusta,
+            'dataencuestador' => $dataencuesta,
             'dataanalista' => $dataanalista),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
+    public function createQuest(){
+        $dataquest = $this->Estudios->getQuest();
+        $vista = $this->load->view('admin_estudio/create_quest',array('data' => $dataquest),TRUE);
+        $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
+    }
+
     public function addQuest(){
-        $vista = $this->load->view('admin_estudio/create_quest','',TRUE);
+        // Toma la informacion de los campos y la guarda en las variables corespondientes
+        $quest = $this->input->post('quest');
+        $desc = $this->input->post('desc');
+        // Convertimos las opciones de array en texto ()
+        if (isset($_POST['opcion'])) {
+            $opcion = implode(', ',$_POST['opcion']);
+        }
+        // Carga las Reglas del helper users_rules y las agrega al Formulario
+        $this->form_validation->set_rules(getQuestRules());
+        if($this->form_validation->run() == FALSE){
+            $this->output->set_status_header(400);
+        }else{
+            echo "INSERT INTO TABLA SET Cuestionario='$quest', Descripcion='$desc', Opcion='$opcion'";
+        }
+        // Si hay un error se mantiene en la vista de Alta de Estudiosser para que los datos no se borren
+        $dataquest = $this->Estudios->getQuest();
+        $vista = $this->load->view('admin_estudio/create_quest',array('data' => $dataquest),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
@@ -78,7 +101,7 @@ class Studies extends CI_Controller {
 
     // Método Template que Carga todos los elemento de las Vistas
     public function getTemplate($view,$links){
-        $data['title'] = 'Administardor del Sistema'; // titulo del Encabezado
+        $data['title'] = 'Administardor de Estudio'; // titulo del Encabezado
         // Partes de la vista 
         $data = array(
             'head' => $this->load->view('layout/head',$data,TRUE), // Encabezado

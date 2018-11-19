@@ -23,7 +23,7 @@
 		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 			<a href="<?=base_url('studies')?>" class="nav-link <?= $this->uri->segment(2) == '' ? 'active' : ''; ?>"  data-toggle="pill">Estudios</a>
 			<a href="<?=base_url('studies/create')?>" class="nav-link <?= $this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'studies/addStudy' ? 'active' : ''; ?>" data-toggle="pill">Alta de Estudios</a>
-			<a href="<?=base_url('studies/addQuest')?>" class="nav-link <?= $this->uri->segment(3) == '' ? 'addQuest' : ''; ?>"  data-toggle="pill">Alta de Cuestionarios</a>
+			<a href="<?=base_url('studies/createQuest')?>" class="nav-link <?= $this->uri->segment(2) == 'createQuest' || $this->uri->segment(2) == 'studies/addQuest' ? 'active' : ''; ?>"  data-toggle="pill">Alta de Cuestionarios</a>
 		</div>
 	</div>
 </nav>

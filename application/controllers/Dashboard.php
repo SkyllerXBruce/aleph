@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
     public function __construct(){
         parent::__construct(); // Constructor padre de CI_Controller
         // Corgamos el Modelo Info Users
-        $this->load->model('InfoUsers','Estudios');
+        $this->load->model(array('InfoUsers','Estudios'));
     }
 
     // Método index para Cagar vista del Dasboard

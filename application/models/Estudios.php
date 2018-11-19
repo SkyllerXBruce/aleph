@@ -17,6 +17,12 @@ class Estudios extends CI_Model{
 		$sql = $this->db->get('ESTUDIOS'); 
 		return $sql->result(); // regresa todos los datos 
 	}
+
+	// Métodos para obtener todos los datos de la tabla Reactivos
+	public function getQuest(){
+		$sql = $this->db->get('REACTIVOS');
+		return $sql->result();
+	}
 	
 	// Métodos para obtener todos los encuestadores de la tabla usuarios
 	public function getEncuestador(){
@@ -30,5 +36,5 @@ class Estudios extends CI_Model{
 		$this->db->where('Rol','Analista');
 		$sql = $this->db->get('USUARIOS');
 		return $sql->result();
-	}
+	}	
 }

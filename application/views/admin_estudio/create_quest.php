@@ -9,7 +9,7 @@
 	<div class="form-group">
 		<!-- Fila de Datos de Contenido -->
     	<div class="form-row">
-      		<div class="col">
+      	<div class="col">
 				<!-- Atributos para el Titulo del Cuestionario -->
 				<div class="col">
 					<label for="">Cuestionario*</label>
@@ -39,7 +39,7 @@
 					</li>
 					<!-- Atributos del Boton Alta de Reactivos -->	
 					<li class="list-group-item">
-						<a class="btn btn-outline-secondary" href="<?= base_url('studies/') ?>" role="button">Agregar un Reactivo</a>
+						<a class="btn btn-outline-secondary" href="<?= base_url('studies/createReagents') ?>" role="button">Agregar un Reactivo</a>
 					</li>
 					<div class="text-danger"><?= form_error('opcion[]') ?></div>
 				</u>

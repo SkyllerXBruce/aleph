@@ -18,7 +18,7 @@ if(!function_exists('getQuestRules')){
 				'label' => 'Descripción', // nombre de la etiqueta 
 				'rules' => 'max_length[250]', // reglas separadas por un pipe |
 				'errors' => array(
-					'max_length' => 'El %s es demaciado grande' // manda error si el campo usuario sobrepasa 100 caracteres
+					'max_length' => 'La %s es demaciado grande' // manda error si el campo usuario sobrepasa 100 caracteres
 				)
 			),
 			array(

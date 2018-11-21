@@ -98,6 +98,17 @@ class Studies extends CI_Controller {
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
+    public function createReagents(){
+        $vista = $this->load->view('admin_estudio/create_reagents','',TRUE);
+        $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
+    }
+
+    public function addReagents(){
+        $vista = $this->load->view('admin_estudio/create_reagents','',TRUE);
+        $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
+    }
 
     // Método Template que Carga todos los elemento de las Vistas
     public function getTemplate($view,$links){

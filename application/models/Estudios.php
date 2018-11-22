@@ -12,11 +12,27 @@ class Estudios extends CI_Model{
 		return !$this->db->insert('ESTUDIOS',$data) ? false : true; 
 	}
 
+	// Método para agregar los datos del estudio
+	public function saveReagents($data){
+		return !$this->db->insert('REACTIVOS',$data) ? false : true; 
+	}
+
+	// Método para agregar los datos del estudio
+	public function saveQuest($data){
+		return !$this->db->insert('CUESTIONARIOS',$data) ? false : true; 
+	}
+
 	// Métodos para obtener todos los datos de la tabla estudios
 	public function getStudies(){
 		$sql = $this->db->get('ESTUDIOS'); 
 		return $sql->result(); // regresa todos los datos 
 	}
+
+		// Métodos para obtener todos los datos de la tabla estudios
+		public function getReagents(){
+			$sql = $this->db->get('CUESTIONARIOS'); 
+			return $sql->result(); // regresa todos los datos 
+		}
 
 	// Métodos para obtener todos los datos de la tabla Reactivos
 	public function getQuest(){

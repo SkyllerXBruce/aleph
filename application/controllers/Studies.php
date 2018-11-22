@@ -8,7 +8,7 @@ class Studies extends CI_Controller {
         parent::__construct(); // Constructor padre de CI_Controller
         // Cargamos Bibliotecas, Helpers y Modelos a Usar
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('studies/study_rules','studies/quest_rules'));
+        $this->load->helper(array('studies/study_rules','studies/quest_rules','studies/reagents_rules'));
         $this->load->model('Estudios');
     }
 
@@ -27,7 +27,6 @@ class Studies extends CI_Controller {
         $vista = $this->load->view('admin_estudio/create_study',array(
             'dataencuestador' => $dataencuesta,
             'dataanalista' => $dataanalista),TRUE);
-        $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
@@ -70,8 +69,8 @@ class Studies extends CI_Controller {
     }
 
     public function createQuest(){
-        $dataquest = $this->Estudios->getQuest();
-        $vista = $this->load->view('admin_estudio/create_quest',array('data' => $dataquest),TRUE);
+        $datastudies = $this->Estudios->getStudies();
+        $vista = $this->load->view('admin_estudio/create_quest',array('data' => $datastudies),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
@@ -80,32 +79,67 @@ class Studies extends CI_Controller {
         // Toma la informacion de los campos y la guarda en las variables corespondientes
         $quest = $this->input->post('quest');
         $desc = $this->input->post('desc');
-        // Convertimos las opciones de array en texto ()
-        if (isset($_POST['opcion'])) {
-            $opcion = implode(', ',$_POST['opcion']);
-        }
+        $study = $this->input->post('study');
         // Carga las Reglas del helper users_rules y las agrega al Formulario
         $this->form_validation->set_rules(getQuestRules());
         if($this->form_validation->run() == FALSE){
             $this->output->set_status_header(400);
         }else{
-            echo "INSERT INTO TABLA SET Cuestionario='$quest', Descripcion='$desc', Opcion='$opcion'";
+            $dataquest = array(
+                'Nombre_Cuestionario' => $quest,
+                'Descripcion' => $desc,
+                'IdEstudio' => $study
+            );
+            // Verifica si los datos fueron agregados Correctamente, si no manda error 500 de Codeigniter 
+			if(!$this->Estudios->saveQuest($dataquest)){
+                $this->output->set_status_header(500);
+            }else{
+                // Mensaje temporal de que el Estudio fue Añadido
+                $this->session->set_flashdata('msg','El Cuestionario a sido Añadido'); 
+                redirect(base_url('studies')); // redirige a la vista del controlador Studies
+            }
         }
         // Si hay un error se mantiene en la vista de Alta de Estudiosser para que los datos no se borren
-        $dataquest = $this->Estudios->getQuest();
-        $vista = $this->load->view('admin_estudio/create_quest',array('data' => $dataquest),TRUE);
+        $datastudies = $this->Estudios->getStudies();
+        $vista = $this->load->view('admin_estudio/create_quest',array('data' => $datastudies),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     public function createReagents(){
-        $vista = $this->load->view('admin_estudio/create_reagents','',TRUE);
+        $quest = $this->Estudios->getReagents();
+        $vista = $this->load->view('admin_estudio/create_reagents',array('dataquest' => $quest),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }
 
     public function addReagents(){
-        $vista = $this->load->view('admin_estudio/create_reagents','',TRUE);
+        // Toma la informacion de los campos y la guarda en las variables corespondientes
+        $reactivo = $this->input->post('reac');
+        $quest = $this->input->post('quest');
+        $tipo = $this->input->post('tipo');
+
+        // Carga las Reglas del helper users_rules y las agrega al Formulario
+        $this->form_validation->set_rules(getReagentsRules());
+        if($this->form_validation->run() == FALSE){
+            $this->output->set_status_header(400);
+        }else{
+            $datareagents = array(
+                'Nombre_Reactivo' => $reactivo,
+                'TipoReactivo' => $tipo,
+                'IdCuestionario' => $quest
+            );
+            // Verifica si los datos fueron agregados Correctamente, si no manda error 500 de Codeigniter 
+			if(!$this->Estudios->saveReagents($datareagents)){
+                $this->output->set_status_header(500);
+            }else{
+                // Mensaje temporal de que el Estudio fue Añadido
+                $this->session->set_flashdata('msg','El Reactivo a sido Añadido'); 
+                redirect(base_url('studies')); // redirige a la vista del controlador Studies
+            } 
+        }
+        $quest = $this->Estudios->getReagents();
+        $vista = $this->load->view('admin_estudio/create_reagents',array('dataquest' => $quest),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
     }

@@ -37,7 +37,8 @@
       		</select>
 					<div class="text-danger"><?= form_error('study') ?></div>
 					<br>
-				<a class="btn btn-outline-secondary" href="<?= base_url('studies/createReagents') ?>" role="button">Agregar un Reactivo</a>
+					<br>
+					<a class="btn btn-outline-secondary" href="<?= base_url('studies/create') ?>" role="button">Agregar un Nuevo Estudio</a>
     		</div>
 			</div>
     </div>

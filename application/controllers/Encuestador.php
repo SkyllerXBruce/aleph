@@ -13,7 +13,8 @@ class Encuestador extends CI_Controller {
 
 	// Método index para Cagar vista de Show Users
 	public function index(){
-		$vista = $this->load->view('encuestador/show_encuestas','',TRUE);
+		$iduser = $this->session->userdata('id');
+    $vista = $this->load->view('encuestador/show_encuestas',array('idencuestador' => $iduser),TRUE);
 		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}

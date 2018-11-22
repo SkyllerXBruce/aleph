@@ -28,8 +28,9 @@ class Dashboard extends CI_Controller {
                     $vista = $this->load->view('admin_estudio/show_studies',array('data' => $dataestudios),TRUE);
                     $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
 					break;
-				case "Encuestador":
-                    $vista = $this->load->view('encuestador/show_encuestas','',TRUE);
+                case "Encuestador":
+                    $iduser = $this->session->userdata('id');
+                    $vista = $this->load->view('encuestador/show_encuestas',array('idencuestador' => $iduser),TRUE);
                     $links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Analista":

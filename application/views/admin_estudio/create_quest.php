@@ -27,7 +27,7 @@
 			<div class="col-7">
 				<!-- Atributos para Asignar el Estudio -->
 				<div class="col">
-					<label for="">Estudio Asignado</label>
+					<label for="">Asignar Estudio</label>
 					<!-- Custom Select con las opciones -->
       		<select name="study" class="custom-select">
         		<option selected value="">Seleccione el Estudio</option>

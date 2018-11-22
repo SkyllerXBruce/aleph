@@ -22,11 +22,11 @@ if(!function_exists('getQuestRules')){
 				)
 			),
 			array(
-				'field' => 'opcion[]', // Nombre del Identificador 
-				'label' => 'Opcion', // nombre de la etiqueta 
+				'field' => 'study', // Nombre del Identificador 
+				'label' => 'Estudio', // nombre de la etiqueta 
 				'rules' => 'required', // reglas separadas por un pipe |
 				'errors' => array(
-					'required' => 'Selecciona una %s, En Caso de no haber Reactivos Agregue uno Por favor.', // manda error si no hay datos encontrados
+					'required' => 'Selecciona un %s, En Caso de no haber Estudios Agregue uno Por favor.', // manda error si no hay datos encontrados
 				)
 			),
     );

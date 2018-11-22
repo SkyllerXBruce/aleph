@@ -41,7 +41,7 @@ class Studies extends CI_Controller {
             $encuestador = implode(', ',$_POST['encuestador']);
         }
         if (isset($_POST['analista'])) {
-            $encuestador = implode(', ',$_POST['analista']);
+            $analista = implode(', ',$_POST['analista']);
         }
 
         // Carga las Reglas del helper users_rules y las agrega al Formulario
@@ -49,8 +49,6 @@ class Studies extends CI_Controller {
         if($this->form_validation->run() == FALSE){
             $this->output->set_status_header(400);
         }else{
-            echo 'encuestador='.$encuestador.' Analista='.$analista;
-            /*
             // Datos para la tabla Estudios
             $data = array(
                 'Estudio' => $estudio,
@@ -62,10 +60,29 @@ class Studies extends CI_Controller {
 			if(!$this->Estudios->save($data)){
                 $this->output->set_status_header(500);
             }else{
+                $arrencuestador = explode(', ',$encuestador);
+                $arranalista = explode(', ',$analista);
+                $idestudios = $this->Estudios->buscaStudio($estudio);
+                foreach ($arrencuestador as $user) {
+                    $iduser = $this->Estudios->buscaUsuario($user);
+                    $dataasignados = array(
+                        'IdEstudio' => $idestudios,
+                        'IdUsuarios' => $iduser
+                    );
+                    $this->Estudios->saveAsignados($dataasignados);
+                }
+                foreach ($arranalista as $user) {
+                    $iduser = $this->Estudios->buscaUsuario($user);
+                    $dataasignados = array(
+                        'IdEstudio' => $idestudios,
+                        'IdUsuarios' => $iduser
+                    );
+                    $this->Estudios->saveAsignados($dataasignados);
+                }
                 // Mensaje temporal de que el Estudio fue Añadido
                 $this->session->set_flashdata('msg','El Estudio a sido Añadido'); 
                 redirect(base_url('studies')); // redirige a la vista del controlador Studies
-            }*/
+            }
         }
         // Si hay un error se mantiene en la vista de Alta de Estudiosser para que los datos no se borren
         $dataencuesta = $this->Estudios->getEncuestador();

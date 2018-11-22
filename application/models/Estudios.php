@@ -52,5 +52,29 @@ class Estudios extends CI_Model{
 		$this->db->where('Rol','Analista');
 		$sql = $this->db->get('USUARIOS');
 		return $sql->result();
+	}
+
+	public function buscaUsuario($user){
+		// Buscamos los datos en la base de datos
+		$data = $this->db->get_where('USUARIOS',array('Nombre_Usuario' => $user));
+		// Si encontramos los datos regresamos un falso 
+    if(!$data->result()){
+      return false;
+    }
+    return $data->row()->Id;
+	}
+
+	public function buscaStudio($study){
+		// Buscamos los datos en la base de datos
+		$data = $this->db->get_where('ESTUDIOS',array('Estudio' => $study));
+		// Si encontramos los datos regresamos un falso 
+    if(!$data->result()){
+      return false;
+    }
+    return $data->row()->idEstudio;
+	}
+
+	public function saveAsignados($dataasignados){
+		return !$this->db->insert('ASIGNADOS',$dataasignados) ? false : true;
 	}	
 }

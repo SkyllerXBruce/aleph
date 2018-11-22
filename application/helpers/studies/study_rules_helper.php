@@ -23,19 +23,19 @@ if(!function_exists('getStudyRules')){
 				)
 			),
 			array(
-				'field' => 'encuestador',
-				'label' => 'Encuestador',
+				'field' => 'encuestador[]',
+				'label' => 'Encuestador(es)',
 				'rules' => 'required',
 				'errors' => array(
-						'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
+						'required' => 'El(Los) %s es(son) requerido(s).', // manda error si no hay datos encontrados
 				)
 			),
 			array(
-				'field' => 'analista',
+				'field' => 'analista[]',
 				'label' => 'Analista',
 				'rules' => 'required',
 				'errors' => array(
-						'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
+						'required' => 'El(Los) %s es(son) requerido(s).', // manda error si no hay datos encontrados
 				),
 				
 			),

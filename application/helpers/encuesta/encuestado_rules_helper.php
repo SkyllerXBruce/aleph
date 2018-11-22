@@ -53,6 +53,14 @@ if(!function_exists('getEncuestadoRules')){
 					'max_length' => 'La %s es demaciado grande' // // manda error si el campo usuario sobrepasa 100 caracteres
 				)
 			),
+			array(
+				'field' => 'quest',
+				'label' => 'Cuestionario',
+				'rules' => 'required',
+				'errors' => array(
+						'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
+				)
+			),
     );
   }
 }

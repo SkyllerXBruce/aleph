@@ -133,7 +133,7 @@ class Studies extends CI_Controller {
     }
 
     public function createReagents(){
-        $quest = $this->Estudios->getReagents();
+        $quest = $this->Estudios->getQuest();
         $vista = $this->load->view('admin_estudio/create_reagents',array('dataquest' => $quest),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
@@ -164,7 +164,7 @@ class Studies extends CI_Controller {
                 redirect(base_url('studies')); // redirige a la vista del controlador Studies
             } 
         }
-        $quest = $this->Estudios->getReagents();
+        $quest = $this->Estudios->getQuest();
         $vista = $this->load->view('admin_estudio/create_reagents',array('dataquest' => $quest),TRUE);
         $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
         $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente

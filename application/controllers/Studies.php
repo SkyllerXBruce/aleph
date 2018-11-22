@@ -35,13 +35,22 @@ class Studies extends CI_Controller {
         // Toma la informacion de los campos y la guarda en las variables corespondientes
         $estudio = $this->input->post('nombre_estudio');
         $tipo = $this->input->post('tipo');
-        $encuestador = $this->input->post('encuestador');
-        $analista = $this->input->post('analista');
+        $encuestador = '';
+        $analista = '';
+        if (isset($_POST['encuestador'])) {
+            $encuestador = implode(', ',$_POST['encuestador']);
+        }
+        if (isset($_POST['analista'])) {
+            $encuestador = implode(', ',$_POST['analista']);
+        }
+
         // Carga las Reglas del helper users_rules y las agrega al Formulario
         $this->form_validation->set_rules(getStudyRules());
         if($this->form_validation->run() == FALSE){
             $this->output->set_status_header(400);
         }else{
+            echo 'encuestador='.$encuestador.' Analista='.$analista;
+            /*
             // Datos para la tabla Estudios
             $data = array(
                 'Estudio' => $estudio,
@@ -56,7 +65,7 @@ class Studies extends CI_Controller {
                 // Mensaje temporal de que el Estudio fue Añadido
                 $this->session->set_flashdata('msg','El Estudio a sido Añadido'); 
                 redirect(base_url('studies')); // redirige a la vista del controlador Studies
-            }
+            }*/
         }
         // Si hay un error se mantiene en la vista de Alta de Estudiosser para que los datos no se borren
         $dataencuesta = $this->Estudios->getEncuestador();

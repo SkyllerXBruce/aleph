@@ -82,6 +82,18 @@
 				<textarea class="form-control" name='adicional' rows="5" placeholder="Ingrese Información Adicional" value="<?= set_value('adicional') ?>"></textarea>
 				<div class="text-danger"><?= form_error('adicional') ?></div>
 			</div>
+			<!-- Atributos para el Genero -->
+			<div class="col">
+				<label for="">Cuestionario*</label>
+				<!-- Custom Select con las opciones -->
+        <select name="quest" class="custom-select">
+        	<option selected value="">Seleccione el Cuestionario</option>
+					<?php foreach($dataquest as $item): ?>
+    				<option <?= set_value('money') == '<?= $item->Nombre_Cuestionario ?>' ? 'selected' : ''; ?> value="<?= $item->Nombre_Cuestionario ?>"><?= $item->Nombre_Cuestionario ?></option>
+					<?php endforeach; ?>
+        </select>
+				<div class="text-danger"><?= form_error('quest') ?></div>
+			</div>
 		</div>
 	</div>
 	<!-- Boton para el Agregar Todos los Datos -->

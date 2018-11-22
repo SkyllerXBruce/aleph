@@ -21,6 +21,14 @@ if(!function_exists('getReagentsRules')){
 					'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
 				)
 			),
+			array(
+				'field' => 'tipo', // Nombre del Identificador 
+				'label' => 'Tipo de Reactivo', // nombre de la etiqueta 
+				'rules' => 'required', // reglas separadas por un pipe |
+				'errors' => array(
+					'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
+				)
+			),
     );
   }
 }

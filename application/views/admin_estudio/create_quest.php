@@ -8,8 +8,8 @@
 	<!-- formamos un grupo de elementos -->
 	<div class="form-group">
 		<!-- Fila de Datos de Contenido -->
-    	<div class="form-row">
-      	<div class="col">
+    <div class="form-row">
+      <div class="col">
 				<!-- Atributos para el Titulo del Cuestionario -->
 				<div class="col">
 					<label for="">Cuestionario*</label>
@@ -25,26 +25,22 @@
 				</div>				
 			</div>
 			<div class="col-7">
-				<!-- Atributos para la lista de Reactivos -->
-      			<h5>Lista de Reactivos*</h5>
-				<ul class="list-group list-group-flush">
-					<!-- Ciclo de Opciones de Reactivos con sus aributos -->
-					<?php foreach($data as $item): ?>
-						<li class="list-group-item">
-							<label><input type="checkbox" value="<?= set_value('opcion[]') ?>" name="opcion[]"/><?= $item->Nombre_Reactivo ?></label>
-						</li>
-					<?php endforeach; ?>
-					<li class="list-group-item">
-						<label><input type="checkbox" value="algo" name="opcion[]"> Algo</label>
-					</li>
-					<!-- Atributos del Boton Alta de Reactivos -->	
-					<li class="list-group-item">
-						<a class="btn btn-outline-secondary" href="<?= base_url('studies/createReagents') ?>" role="button">Agregar un Reactivo</a>
-					</li>
-					<div class="text-danger"><?= form_error('opcion[]') ?></div>
-				</u>
+				<!-- Atributos para Asignar el Estudio -->
+				<div class="col">
+					<label for="">Estudio Asignado</label>
+					<!-- Custom Select con las opciones -->
+      		<select name="study" class="custom-select">
+        		<option selected value="">Seleccione el Estudio</option>
+						<?php foreach($data as $item): ?>
+							<option <?= set_value('study') == $item->Estudio ? 'selected' : ''; ?> value="<?= $item->idEstudio ?>"><?= $item->Estudio ?></option>
+						<?php endforeach; ?>
+      		</select>
+					<div class="text-danger"><?= form_error('study') ?></div>
+					<br>
+				<a class="btn btn-outline-secondary" href="<?= base_url('studies/createReagents') ?>" role="button">Agregar un Reactivo</a>
+    		</div>
 			</div>
-    	</div>
+    </div>
 	</div>
 	<br>
 	<!-- Boton para el Agregar Todos los Datos Ingresados -->

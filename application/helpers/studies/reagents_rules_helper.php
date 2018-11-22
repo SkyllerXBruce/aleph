@@ -18,7 +18,7 @@ if(!function_exists('getReagentsRules')){
 				'label' => 'Cuestionario', // nombre de la etiqueta 
 				'rules' => 'required', // reglas separadas por un pipe |
 				'errors' => array(
-					'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
+					'required' => 'El %s es requerido, En caso de no haber Agregue uno Por favor.', // manda error si no hay datos encontrados
 				)
 			),
 			array(

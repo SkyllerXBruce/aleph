@@ -30,13 +30,13 @@ class Estudios extends CI_Model{
 
 		// Métodos para obtener todos los datos de la tabla estudios
 		public function getReagents(){
-			$sql = $this->db->get('CUESTIONARIOS'); 
+			$sql = $this->db->get('REACTIVOS'); 
 			return $sql->result(); // regresa todos los datos 
 		}
 
 	// Métodos para obtener todos los datos de la tabla Reactivos
 	public function getQuest(){
-		$sql = $this->db->get('REACTIVOS');
+		$sql = $this->db->get('CUESTIONARIOS');
 		return $sql->result();
 	}
 	

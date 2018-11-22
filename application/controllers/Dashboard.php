@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
                     $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Encuestador":
-                    $vista = $this->load->view('encuestador/show_encuestador','',TRUE);
+                    $vista = $this->load->view('encuestador/show_encuestas','',TRUE);
                     $links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 					break;
 				case "Analista":

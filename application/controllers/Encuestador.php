@@ -14,36 +14,14 @@ class Encuestador extends CI_Controller {
 
 	// Método index para Cagar vista de Show Users
 	public function index(){
-		
-		//$idestudios = $this->Encuestados->buscarStudiesporEncuestador($this->session->userdata('id'));
-		//echo "iduser=".$this->session->userdata('id').'<br>';
-
-		//echo $idestudios[0]->IdEstudio;
-		//$id = $this->Encuestados->buscarQuestPorIdEstudio($idestudios[0]->IdEstudio);
-
-		//foreach ($id as $quest) {
-		//	echo $quest->Nombre_Cuestionario;
-		//	$data = $quest->Nombre_Cuestionario;
-		//}
-		//echo $data;
     $vista = $this->load->view('encuestador/show_encuestas','',TRUE);
 		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
 
 	public function create(){
-		$quest = $this->Encuestados->getQuest();
-		$vista = $this->load->view('encuestador/create_encuestado',array(
-			'dataedad' => array(
-				'1 - 3 años','3 - 5 años','5 - 10 años','10 - 15 años','15 - 20 años','20 - 30 años',
-				'30 - 40 años','50 - 60 años','60 - 70 años','70 - 80 años','Mas de 80 años'),
-			'dataschool' => array(
-				'Primaria','Secundaria','Preparatoria','Licenciatura',
-				'Maestría','Doctorado','Posgrado','Ingeniería'),
-			'datamoney' => array(
-				'2,000-7,999','8,000-15,999','16,000-24,999',
-				'25,000-34,999','35,000-49,999','Mas de 50,000'),
-			'dataquest' => $quest),TRUE);
+		$study = $this->Encuestados->getStudies();
+		$vista = $this->load->view('encuestador/create_encuestado',array('datastudy' => $study),TRUE);
 		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
@@ -58,19 +36,19 @@ class Encuestador extends CI_Controller {
 		$school = $this->input->post('school');
 		$money = $this->input->post('money');
 		$adicional = $this->input->post('adicional');
-		$quest = $this->input->post('quest');
+		$idstudy = $this->input->post('study');
+		$idquest = $this->input->post('quest');
 		// Carga las Reglas del helper users_rules y las agrega al Formulario
 		$this->form_validation->set_rules(getEncuestadoRules());
 		// Validacion del Formulario, si hay un problema de sintaxis manda el error, si no registra el Usuario y retorna a la vista del controlador user
 		if($this->form_validation->run() == FALSE){
 			$this->output->set_status_header(400);
 		} else {
-			$dataquest = $this->Encuestados->buscarQuest($quest);
 			date_default_timezone_set('America/Mexico_City');
 			$hoy = date('Y-m-d G:i:s');
 			$data = array(
-				'IdEstudio' => $dataquest->IdEstudio,
-				'IdCuestionario' => $dataquest->IdCuestionario,
+				'IdEstudio' => $idstudy,
+				'IdCuestionario' => $idquest,
 				'IdUsuarios' => $iduser,
 				'Nombre_Encuestado' => $name,
 				'Localidad' => $local,
@@ -90,18 +68,8 @@ class Encuestador extends CI_Controller {
 				redirect(base_url('encuestador/inicia')); // redirige a la vista del controlador user
 			}
 		}
-		$quest = $this->Encuestados->getQuest();
-		$vista = $this->load->view('encuestador/create_encuestado',array(
-			'dataedad' => array(
-				'1 - 3 años','3 - 5 años','5 - 10 años','10 - 15 años','15 - 20 años','20 - 30 años',
-				'30 - 40 años','50 - 60 años','60 - 70 años','70 - 80 años','Mas de 80 años'),
-			'dataschool' => array(
-				'Primaria','Secundaria','Preparatoria','Licenciatura',
-				'Maestría','Doctorado','Posgrado','Ingeniería'),
-			'datamoney' => array(
-				'2,000-7,999','8,000-15,999','16,000-24,999',
-				'25,000-34,999','35,000-49,999','Mas de 50,000'),
-			'dataquest' => $quest),TRUE);
+		$study = $this->Encuestados->getStudies();
+		$vista = $this->load->view('encuestador/create_encuestado',array('datastudy' => $study),TRUE);
 		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
@@ -110,6 +78,19 @@ class Encuestador extends CI_Controller {
 		$vista = $this->load->view('encuestador/inicia_encuesta','',TRUE);
 		$links = ''; // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
+	}
+
+	public function getQuest(){
+		$idstudy = $this->input->post('study');
+		if ($idstudy){
+			$quest = $this->Encuestados->buscarQuestPorIdEstudio($idstudy);
+			echo '<option value="">Selecciona Cuestionario</option>';
+			foreach ($quest as $item) {
+				echo '<option value="'.$item->IdCuestionario.'">'.$item->Nombre_Cuestionario.'</option>';
+			}
+		}else{
+			echo '<option value="">Selecciona Cuestionario</option>';
+		}
 	}
 
 	// Método Template que Carga todos los elemento de las Vistas

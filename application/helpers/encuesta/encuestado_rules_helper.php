@@ -54,6 +54,14 @@ if(!function_exists('getEncuestadoRules')){
 				)
 			),
 			array(
+				'field' => 'study',
+				'label' => 'Estudio',
+				'rules' => 'required',
+				'errors' => array(
+						'required' => 'El %s es requerido.', // manda error si no hay datos encontrados
+				)
+			),
+			array(
 				'field' => 'quest',
 				'label' => 'Cuestionario',
 				'rules' => 'required',

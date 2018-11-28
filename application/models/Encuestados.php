@@ -18,10 +18,27 @@ class Encuestados extends CI_Model{
 		return $sql->result();
 	}
 
+	// Método para obtener todos los cuestionarios que coinciden con el id del estudio
 	public function buscarQuestPorIdEstudio($idestudio){
 		// Buscamos los datos en la base de datos
 		$this->db->where('IdEstudio',$idestudio);
 		$data = $this->db->get('CUESTIONARIOS');
+        return $data->result(); // se regresa la tupla de los datos encontrados 
+	}
+
+	// Método para obtener todos los Estudios que coinciden con el id del usuario
+	public function buscarIdStudyPorIdUser($iduser){
+		// Buscamos los datos en la base de datos
+		$this->db->where('IdUsuarios',$iduser);
+		$data = $this->db->get('ASIGNADOS');
+        return $data->result(); // se regresa la tupla de los datos encontrados 
+	}
+
+	// Método para obtener todos los Estudios que coinciden con el id del usuario
+	public function buscarStudyPorId($idstudy){
+		// Buscamos los datos en la base de datos
+		$this->db->where('idEstudio',$idstudy);
+		$data = $this->db->get('ESTUDIOS');
         return $data->result(); // se regresa la tupla de los datos encontrados 
 	}
 }

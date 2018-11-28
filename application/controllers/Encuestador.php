@@ -14,7 +14,8 @@ class Encuestador extends CI_Controller {
 
 	// Método index para Cagar vista de Show Users
 	public function index(){
-    $vista = $this->load->view('encuestador/show_encuestas','',TRUE);
+		$data = $this->getListEncuestador();
+		$vista = $this->load->view('encuestador/show_encuestas',array('data' => $data),TRUE);
 		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
@@ -91,6 +92,19 @@ class Encuestador extends CI_Controller {
 		}else{
 			echo '<option value="">Selecciona Cuestionario</option>';
 		}
+	}
+
+	public function getListEncuestador(){
+		$idstudy = $this->Encuestados->buscarIdStudyPorIdUser($this->session->userdata('id'));
+		$data = array();
+		foreach ($idstudy as $i) {
+			$idquest = $this->Encuestados->buscarQuestPorIdEstudio($i->IdEstudio);
+			$study = $this->Encuestados->buscarStudyPorId($i->IdEstudio);
+			foreach ($idquest as $j) {
+				array_push($data,array('study' => $study[0]->Estudio,'quest' => $j->Nombre_Cuestionario,'desc' => $j->Descripcion));
+			}
+		}
+		return $data;
 	}
 
 	// Método Template que Carga todos los elemento de las Vistas

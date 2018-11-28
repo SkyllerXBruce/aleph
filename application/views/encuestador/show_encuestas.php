@@ -8,11 +8,16 @@
       <th scope="col">Estudios</th>
       <th scope="col">Cuestionario</th>
       <th scope="col">Descripción de Cuestionario</th>
-      <th scope="col">Ir a la Encuesta</th>
     </tr>
 	</thead>
 	<!-- Ciclo para Mostrar Cada uno de los Datos -->
   <tbody>
-    
+    <?php foreach($data as $item): ?>
+    	<tr>
+      	<th scope="row"><?= $item['study'] ?></th>
+      	<td><?= $item['quest'] ?></td>
+      	<td><?= $item['desc'] ?></td>
+    	</tr>
+    <?php endforeach; ?>
   </tbody>
 </table>

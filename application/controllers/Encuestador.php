@@ -81,6 +81,13 @@ class Encuestador extends CI_Controller {
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
 
+	public function detalles($idquest)	{
+		$data = $this->getDetalleStudy($idquest);
+		$vista = $this->load->view('encuestador/detalles_encuesta',array('data' => $data),TRUE);
+		$links = ''; // Barra lateral de navegacion
+		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
+	}
+
 	public function getQuest(){
 		$idstudy = $this->input->post('study');
 		if ($idstudy){
@@ -98,12 +105,34 @@ class Encuestador extends CI_Controller {
 		$idstudy = $this->Encuestados->buscarIdStudyPorIdUser($this->session->userdata('id'));
 		$data = array();
 		foreach ($idstudy as $i) {
-			$idquest = $this->Encuestados->buscarQuestPorIdEstudio($i->IdEstudio);
+			$quest = $this->Encuestados->buscarQuestPorIdEstudio($i->IdEstudio);
 			$study = $this->Encuestados->buscarStudyPorId($i->IdEstudio);
-			foreach ($idquest as $j) {
-				array_push($data,array('study' => $study[0]->Estudio,'quest' => $j->Nombre_Cuestionario,'desc' => $j->Descripcion));
+			foreach ($quest as $j) {
+				array_push($data,array(
+					'study' => $study[0]->Estudio,
+					'asignadoe' => $study[0]->Encuestador,
+          'asignadoa' => $study[0]->Analista,
+          'idquest' => $j->IdCuestionario,
+					'quest' => $j->Nombre_Cuestionario)
+				);
 			}
 		}
+		return $data;
+	}
+
+	public function getDetalleStudy($idquest){
+		$quest = $this->Encuestados->buscarQuestPorIdcuestionario($idquest);
+		$study = $this->Encuestados->buscarStudyPorId($quest[0]->IdEstudio);
+		$data = array(
+			'user' => $this->session->userdata('nombre_usuario'),
+			'study' => $study[0]->Estudio,
+			'typestudy' => $study[0]->Tipo,
+			'asignadoe' => $study[0]->Encuestador,
+			'asignadoa' => $study[0]->Analista,
+			'idquest' => $quest[0]->IdCuestionario,
+			'quest' => $quest[0]->Nombre_Cuestionario,
+			'desc' => $quest[0]->Descripcion
+		);
 		return $data;
 	}
 

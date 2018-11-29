@@ -45,14 +45,20 @@ class Dashboard extends CI_Controller {
     }
   }
 
-    public function getListEncuestador(){
+  public function getListEncuestador(){
 		$idstudy = $this->Encuestados->buscarIdStudyPorIdUser($this->session->userdata('id'));
 		$data = array();
 		foreach ($idstudy as $i) {
-			$idquest = $this->Encuestados->buscarQuestPorIdEstudio($i->IdEstudio);
+			$quest = $this->Encuestados->buscarQuestPorIdEstudio($i->IdEstudio);
 			$study = $this->Encuestados->buscarStudyPorId($i->IdEstudio);
-			foreach ($idquest as $j) {
-				array_push($data,array('study' => $study[0]->Estudio,'quest' => $j->Nombre_Cuestionario,'desc' => $j->Descripcion));
+			foreach ($quest as $j) {
+				array_push($data,array(
+					'study' => $study[0]->Estudio,
+					'asignadoe' => $study[0]->Encuestador,
+          'asignadoa' => $study[0]->Analista,
+          'idquest' => $j->IdCuestionario,
+					'quest' => $j->Nombre_Cuestionario)
+				);
 			}
 		}
 		return $data;

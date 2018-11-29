@@ -64,9 +64,7 @@ class Encuestador extends CI_Controller {
 			if(!$this->Encuestados->save($data)){
 				$this->output->set_status_header(500);
 			}else{
-				// Mensaje temporal de que el usuario fue registrado
-				$this->session->set_flashdata('msg','Registro Exitoso, Empieza el Cuestionario'); 
-				redirect(base_url('encuestador/inicia')); // redirige a la vista del controlador user
+				redirect(base_url('encuestador/inicia/'.$data['IdCuestionario'])); // redirige a la vista del controlador user
 			}
 		}
 		$study = $this->Encuestados->getStudies();
@@ -75,10 +73,39 @@ class Encuestador extends CI_Controller {
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
 
-	public function inicia(){
-		$vista = $this->load->view('encuestador/inicia_encuesta','',TRUE);
-		$links = ''; // Barra lateral de navegacion
-		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
+	public function inicia($idquest){
+		$data['title'] = 'Encuesta';
+		//$idquest = $this->session->flashdata('idquest');// sifunciona
+		$reagents = $this->Encuestados->buscarReagentsPorIdcuestionario($idquest);
+		$quest = $this->Encuestados->buscarQuestPorIdcuestionario($idquest);
+		$this->load->view('layout/head',$data);
+		$this->load->view('encuestador/inicia_encuesta',array('reactivos' => $reagents,'quest' => $quest));
+		$this->load->view('layout/footer');
+	}
+
+	public function addEncuesta($idquest){
+		$resp = '';
+		$data['title'] = 'Encuesta';
+		$reagents = $this->Encuestados->buscarReagentsPorIdcuestionario($idquest);
+		$quest = $this->Encuestados->buscarQuestPorIdcuestionario($idquest);
+		if(isset($_POST['resp'])){
+			$count = 0;
+			foreach ($_POST['resp'] as $value) {
+				$datosresp = array(
+					'Respuesta' => $value,
+					'IdReactivo' => $reagents[$count]->IdReactivo,
+				);
+				$datosrespcampo = array('IdCuestionarioContestado' => $idquest);
+				$this->Encuestados->saveRespuesta($datosresp,$datosrespcampo);
+				$count++;
+			}
+			// Mensaje temporal de que el Estudio fue Añadido
+			$this->session->set_flashdata('msg','La Encuesta a sido Añadida'); 
+			redirect(base_url('encuestador')); // redirige a la vista del controlador Studies
+		}
+		$this->load->view('layout/head',$data);
+		$this->load->view('encuestador/inicia_encuesta',array('reactivos' => $reagents,'quest' => $quest));
+		$this->load->view('layout/footer');
 	}
 
 	public function detalles($idquest)	{

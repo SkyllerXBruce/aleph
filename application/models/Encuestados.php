@@ -12,6 +12,21 @@ class Encuestados extends CI_Model{
 		return !$this->db->insert('CUESTIONARIO_CONTESTADO',$data) ? false : true; 
 	}
 
+	// Método para agregar las Respuestas
+	public function saveRespuesta($datosresp,$datosrespcampo){
+		// Se inicia una transaccion de tal forma que verifica que se realice correctamente lo contenido dentro, si falla cualquier cosa, se revierte todas las acciones realizadas para evitar corrupciones en los datos 
+		$this->db->trans_start();
+			// incerta los datos del usuario a la tabla 
+			$this->db->insert('RESPUESTAS',$datosresp); 
+			// obtiene el identificador del usuario y lo guarda en la columna id_usuario de la tabla
+			$datosrespcampo['IdRespuesta'] = $this->db->insert_id();   
+			// incerta los datos de la Informacion del usuario a la tabla 
+			$this->db->insert('RESPUESTA_CAMPO',$datosrespcampo);
+		$this->db->trans_complete(); // Termina la transaccion
+ 		// regresa verdadero o falso dependiendo si la tansaccion fue ejecutada correctamente o fallo
+ 		return !$this->db->trans_status() ? false : true;  
+	}
+
 	// Métodos para obtener todos los datos de la tabla Cuestionarios
 	public function getStudies(){
 		$sql = $this->db->get('ESTUDIOS');
@@ -31,6 +46,14 @@ class Encuestados extends CI_Model{
 		// Buscamos los datos en la base de datos
 		$this->db->where('IdCuestionario',$idquest);
 		$data = $this->db->get('CUESTIONARIOS');
+        return $data->result(); // se regresa la tupla de los datos encontrados 
+	}
+
+	// Método para obtener todos los cuestionarios que coinciden con el id del Cuestionario
+	public function buscarReagentsPorIdcuestionario($idquest){
+		// Buscamos los datos en la base de datos
+		$this->db->where('IdCuestionario',$idquest);
+		$data = $this->db->get('REACTIVOS');
         return $data->result(); // se regresa la tupla de los datos encontrados 
 	}
 

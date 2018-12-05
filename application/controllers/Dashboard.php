@@ -29,13 +29,15 @@ class Dashboard extends CI_Controller {
           $links = $this->load->view('layout/aside_estudio','',TRUE); // Barra lateral de navegacion
 				break;
         case "Encuestador":
-          $data = $this->getListEncuestador();
+          $data = $this->getListQuest();
           $vista = $this->load->view('encuestador/show_encuestas',array('data' => $data),TRUE);
           $links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 				break;
 				case "Analista":
-          $vista = $this->load->view('analista/show_analista','',TRUE);
-          $links = $this->load->view('layout/aside_analista','',TRUE); // Barra lateral de navegacion
+        $data = $this->getListQuest();
+        $vista = $this->load->view('analista/show_encuestas',array('data' => $data),TRUE);
+        $links = $this->load->view('layout/aside_analista','',TRUE); // Barra lateral de navegacion
+        $this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 				break;
       }
       // Carga el Template con la vista correspondiente
@@ -45,7 +47,7 @@ class Dashboard extends CI_Controller {
     }
   }
 
-  public function getListEncuestador(){
+  public function getListQuest(){
 		$idstudy = $this->Encuestados->buscarIdStudyPorIdUser($this->session->userdata('id'));
 		$data = array();
 		foreach ($idstudy as $i) {
@@ -66,7 +68,7 @@ class Dashboard extends CI_Controller {
 
   // Método Template que Carga todos los elemento de las Vistas
   public function getTemplate($view,$links){
-    $data['title'] = 'Administardor del Sistema'; // titulo del Encabezado
+    $data['title'] = 'Sistema de Encuestas'; // titulo del Encabezado
     // Partes de la vista 
     $data = array(
       'head' => $this->load->view('layout/head',$data,TRUE), // Encabezado

@@ -22,7 +22,6 @@
 		<!-- Links de la Barra Lateral -->
 		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 			<a href="<?=base_url('analista')?>" class="nav-link <?= $this->uri->segment(2) == '' || $this->uri->segment(2) == 'detalles' || $this->uri->segment(2) == 'encuesta' ? 'active' : ''; ?>"  data-toggle="pill">Encuestas Asignadas</a>
-			<a href="<?=base_url('analista/download')?>" class="nav-link <?= $this->uri->segment(2) == 'download' ? 'active' : ''; ?>" data-toggle="pill">Descarga Encuesta</a>
 		</div>
 	</div>
 </nav>

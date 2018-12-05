@@ -14,7 +14,7 @@ class Encuestador extends CI_Controller {
 
 	// Método index para Cagar vista de Show Users
 	public function index(){
-		$data = $this->getListEncuestador();
+		$data = $this->getListQuest();
 		$vista = $this->load->view('encuestador/show_encuestas',array('data' => $data),TRUE);
 		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
@@ -95,7 +95,7 @@ class Encuestador extends CI_Controller {
 					'Respuesta' => $value,
 					'IdReactivo' => $reagents[$count]->IdReactivo,
 				);
-				$datosrespcampo = array('IdCuestionarioContestado' => $idquest);
+				$datosrespcampo = array('IdCuestionarioContestado' => $this->Encuestados->getMaxIdQuestDone());
 				$this->Encuestados->saveRespuesta($datosresp,$datosrespcampo);
 				$count++;
 			}
@@ -111,7 +111,7 @@ class Encuestador extends CI_Controller {
 	public function detalles($idquest)	{
 		$data = $this->getDetalleStudy($idquest);
 		$vista = $this->load->view('encuestador/detalles_encuesta',array('data' => $data),TRUE);
-		$links = ''; // Barra lateral de navegacion
+		$links = $this->load->view('layout/aside_encuestador','',TRUE); // Barra lateral de navegacion
 		$this->getTemplate($vista,$links); // Carga el Template con la vista correspondiente
 	}
 
@@ -128,7 +128,7 @@ class Encuestador extends CI_Controller {
 		}
 	}
 
-	public function getListEncuestador(){
+	public function getListQuest(){
 		$idstudy = $this->Encuestados->buscarIdStudyPorIdUser($this->session->userdata('id'));
 		$data = array();
 		foreach ($idstudy as $i) {

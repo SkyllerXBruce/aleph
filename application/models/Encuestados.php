@@ -19,12 +19,18 @@ class Encuestados extends CI_Model{
 			// incerta los datos del usuario a la tabla 
 			$this->db->insert('RESPUESTAS',$datosresp); 
 			// obtiene el identificador del usuario y lo guarda en la columna id_usuario de la tabla
-			$datosrespcampo['IdRespuesta'] = $this->db->insert_id();   
+			$datosrespcampo['IdRespuesta'] = $this->db->insert_id();
 			// incerta los datos de la Informacion del usuario a la tabla 
 			$this->db->insert('RESPUESTA_CAMPO',$datosrespcampo);
 		$this->db->trans_complete(); // Termina la transaccion
  		// regresa verdadero o falso dependiendo si la tansaccion fue ejecutada correctamente o fallo
  		return !$this->db->trans_status() ? false : true;  
+	}
+
+	public function getMaxIdQuestDone(){
+		$this->db->select_max('IdCuestionarioContestado'); 
+    $result= $this->db->get('CUESTIONARIO_CONTESTADO')->row_array(); 
+    return $result['IdCuestionarioContestado'];
 	}
 
 	// Métodos para obtener todos los datos de la tabla Cuestionarios
@@ -38,7 +44,7 @@ class Encuestados extends CI_Model{
 		// Buscamos los datos en la base de datos
 		$this->db->where('IdEstudio',$idestudio);
 		$data = $this->db->get('CUESTIONARIOS');
-        return $data->result(); // se regresa la tupla de los datos encontrados 
+    return $data->result(); // se regresa la tupla de los datos encontrados 
 	}
 
 	// Método para obtener todos los cuestionarios que coinciden con el id del Cuestionario
@@ -46,7 +52,15 @@ class Encuestados extends CI_Model{
 		// Buscamos los datos en la base de datos
 		$this->db->where('IdCuestionario',$idquest);
 		$data = $this->db->get('CUESTIONARIOS');
-        return $data->result(); // se regresa la tupla de los datos encontrados 
+    return $data->result(); // se regresa la tupla de los datos encontrados 
+	}
+
+	// Método para obtener todos los cuestionarios que coinciden con el id del Cuestionario
+	public function buscarQuestDonePorIdcuestionario($idquest){
+		// Buscamos los datos en la base de datos
+		$this->db->where('IdCuestionario',$idquest);
+		$data = $this->db->get('CUESTIONARIO_CONTESTADO');
+    return $data->result(); // se regresa la tupla de los datos encontrados 
 	}
 
 	// Método para obtener todos los cuestionarios que coinciden con el id del Cuestionario
@@ -54,7 +68,7 @@ class Encuestados extends CI_Model{
 		// Buscamos los datos en la base de datos
 		$this->db->where('IdCuestionario',$idquest);
 		$data = $this->db->get('REACTIVOS');
-        return $data->result(); // se regresa la tupla de los datos encontrados 
+    return $data->result(); // se regresa la tupla de los datos encontrados 
 	}
 
 	// Método para obtener todos los Estudios que coinciden con el id del usuario
@@ -70,6 +84,6 @@ class Encuestados extends CI_Model{
 		// Buscamos los datos en la base de datos
 		$this->db->where('idEstudio',$idstudy);
 		$data = $this->db->get('ESTUDIOS');
-        return $data->result(); // se regresa la tupla de los datos encontrados 
+    return $data->result(); // se regresa la tupla de los datos encontrados 
 	}
 }

@@ -20,14 +20,14 @@
 				<!-- Atributos para la descripcion del Cuestionario -->
 				<div class="col">
 					<label for="">Descripción</label>
-					<textarea class="form-control" name='desc' rows="4" placeholder="Inserte una Breve Descripción" value="<?= set_value('desc') ?>"></textarea>
+					<textarea class="form-control" name='desc' rows="4" placeholder="Inserte una Breve Explicación sobre el Cuestionario" value="<?= set_value('desc') ?>"></textarea>
 					<div class="text-danger"><?= form_error('desc') ?></div>
 				</div>				
 			</div>
 			<div class="col-7">
 				<!-- Atributos para Asignar el Estudio -->
 				<div class="col">
-					<label for="">Asignar Estudio</label>
+					<label for="">Asignar Estudio*</label>
 					<!-- Custom Select con las opciones -->
       		<select name="study" class="custom-select">
         		<option selected value="">Seleccione el Estudio</option>

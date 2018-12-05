@@ -107,7 +107,7 @@ class Users extends CI_Controller {
 
     // Método Template que Carga todos los elemento de las Vistas
     public function getTemplate($view,$links){
-        $data['title'] = 'Administardor del Sistema'; // titulo del Encabezado
+        $data['title'] = 'Administrador del Sistema'; // titulo del Encabezado
         // Partes de la vista 
         $data = array(
             'head' => $this->load->view('layout/head',$data,TRUE), // Encabezado

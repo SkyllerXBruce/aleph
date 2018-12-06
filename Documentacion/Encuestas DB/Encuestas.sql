@@ -115,7 +115,16 @@ CREATE TABLE `CUESTIONARIO_CONTESTADO` (
 --
 
 INSERT INTO `CUESTIONARIO_CONTESTADO` (`IdCuestionarioContestado`, `IdEstudio`, `IdUsuarios`, `IdCuestionario`, `Nombre_Encuestado`, `Localidad`, `Fecha_Relizado`, `Rango_Edad`, `Escolaridad`, `Genero`, `Rango_Ingresos`, `Info_Adicional`) VALUES
-(1, 1, 4, 1, 'Daniel', 'Coyoacan', '2018-12-04 11:55:26', '20 - 30 años', 'Licenciatura', 'Masculino', '2,000-7,999', 'Ninguna');
+(1, 1, 4, 1, 'Daniel', 'Coyoacan', '2018-12-04 11:55:26', '20 - 30 años', 'Licenciatura', 'Masculino', '2,000-7,999', 'Ninguna'),
+(3, 1, 5, 2, 'Bibiana González', 'Guaymas, Sonora', '2018-12-05 19:11:22', '20 - 30 años', 'Licenciatura', 'Femenino', '2,000-7,999', 'Licenciada en computación'),
+(5, 2, 6, 4, 'Susana Hernández', 'Ciudad de México', '2018-12-05 20:52:25', '20 - 30 años', 'Licenciatura', 'Femenino', '2,000-7,999', 'Licenciada en Educación'),
+(6, 3, 6, 5, 'Salvador Pérez', 'Ensenada, Baja California', '2018-12-05 20:57:22', '30 - 40 años', 'Licenciatura', 'Masculino', '8,000-15,999', 'Ingeniero en Computación'),
+(8, 3, 6, 6, 'Esteban Sepúlveda', 'Jalapa, Veracruz', '2018-12-05 21:09:06', '40 - 50 años', 'Preparatoria', 'Masculino', '25,000-34,999', 'Empresario'),
+(10, 4, 8, 7, 'Daniel Durán', 'Mexicali, Baja California', '2018-12-05 21:25:54', '50 - 60 años', 'Maestría', 'Masculino', '8,000-15,999', 'Maestro en Ciencias'),
+(11, 1, 8, 3, 'Daniel Durán', 'Mexicali, Baja California', '2018-12-05 21:26:23', '50 - 60 años', 'Maestría', 'Masculino', '8,000-15,999', 'Maestro en Ciencias'),
+(12, 2, 6, 4, 'Gustavo Talamantes', 'Monterrey, Nuevo León', '2018-12-05 22:06:26', '60 - 70 años', 'Licenciatura', 'Masculino', '8,000-15,999', 'Licenciado en Administración'),
+(13, 4, 4, 7, 'Pedro Isaac García Crespo', 'Iztacalco, Ciudad de México', '2018-12-05 22:23:00', '30 - 40 años', 'Preparatoria', 'Masculino', '8,000-15,999', 'Mecánico'),
+(14, 4, 4, 8, 'Berenice Velazquez Acuña', 'Morelia, Michoacán', '2018-12-05 22:38:24', '40 - 50 años', 'Licenciatura', 'Femenino', '8,000-15,999', 'Licenciada en Psicología');
 
 -- --------------------------------------------------------
 
@@ -210,7 +219,24 @@ INSERT INTO `REACTIVOS` (`IdReactivo`, `Nombre_Reactivo`, `IdCuestionario`, `Tip
 (15, '¿De una tabla de verdad ya creada se puede obtener el circuito?', 5, 'Abierta'),
 (16, '¿Se puede obtener la tabla de verdad del circuito ya creado?', 6, 'Abierta'),
 (17, '¿que es el síndrome del TDA?', 8, 'Abierta'),
-(18, '¿Cuales son las Características de un niño con TDA?', 8, 'Abierta');
+(18, '¿Cuales son las Características de un niño con TDA?', 8, 'Abierta'),
+(19, '¿qué es una organización empresarial?', 4, 'Abierta'),
+(20, '¿cuáles son los dos tipos de organización empresarial?', 4, 'Abierta'),
+(21, '¿quién es la clave para la organización empresarial?', 4, 'Abierta'),
+(22, '¿Cuáles son las principales funciones de quien ejerza el liderazgo?', 4, 'Abierta'),
+(23, '¿qué es el pensamiento concreto?', 7, 'Abierta'),
+(24, '¿a qué edad se desarrolla el pensamiento concreto?', 7, 'Abierta'),
+(25, '¿Cuáles son las diferencias entre pensamiento concreto y pensamiento abstracto?', 7, 'Abierta'),
+(26, '¿qué es el TDA?', 8, 'Abierta'),
+(27, '¿Quién puede desarrollar TDA?', 8, 'Abierta'),
+(28, '¿Qué causa el TDA?', 8, 'Abierta'),
+(29, '¿Cuáles son los síntomas del TDA?', 8, 'Abierta'),
+(30, '¿Cómo sé si mi hijo tiene TDA?', 8, 'Abierta'),
+(31, '¿Cómo mejoran los niños que tienen TDA?', 8, 'Abierta'),
+(32, '¿Cómo puedo ayudar a mi hijo?', 8, 'Abierta'),
+(33, '¿Cómo afecta el TDA a los adolescentes?', 8, 'Abierta'),
+(34, '¿Qué puedo hacer por mi hijo adolescente que tiene TDA?', 8, 'Abierta'),
+(35, '¿Los adultos también pueden tener TDA?', 8, 'Abierta');
 
 -- --------------------------------------------------------
 
@@ -232,7 +258,36 @@ CREATE TABLE `RESPUESTAS` (
 INSERT INTO `RESPUESTAS` (`IdRespuesta`, `Respuesta`, `IdReactivo`) VALUES
 (1, 'Es el lider de un proyecto scrum', 1),
 (2, 'cada uno de los casos de uso que tendra el programa', 2),
-(3, 'es quien proporciona los stories', 3);
+(3, 'es quien proporciona los stories', 3),
+(4, 'Las organizaciones son estructuras administrativas y sistemas administrativos creadas para lograr metas u objetivos con apoyo de los propios seres humanos.', 11),
+(5, 'Los circuitos CI TTL y CMOS.', 12),
+(6, 'Un circuito integrado (CI), también conocido como chip o microchip, es una estructura de pequeñas dimensiones de material semiconductor', 13),
+(7, 'Es correcto de una tabla de verdad se puede obtener un circuito', 15),
+(8, 'No, se obtendría A', 14),
+(9, 'Asi es, sí se puede obtener la tabla de verdad del circuito ya creado', 16),
+(10, 'Estrategia, cuantas pruebas, cuando hacerse, quien hace las pruebas, que se prueba, de que tipo las pruebas, Casos de prrueba', 8),
+(11, 'la prueba unitaria el desarrollador, la prueba de integración el equipo de desarrollo, las pruebas de aceptación los usuarios', 9),
+(12, 'desempeño, disponibilidad y seguridad', 10),
+(13, 'Una organización es un sistema definido para conseguir ciertos objetivos.', 11),
+(14, 'Las empresas no nacen ni se estructuran por sí mismas.Antes de ponerlas en marcha, sus directivos deben tener clara la forma en que ésta se organizará de cara a las tareas propias de su actividad comercial.', 19),
+(15, 'formal e informal', 20),
+(16, 'El lider', 21),
+(17, 'Asignación de deberes a los integrantes de la compañía. Delegación de autoridad en jefes o encargados. Gestión del factor humano y de la capacidad de los equipos de trabajo. Supervisión de las actividades corporativas. Intervención en aquellos casos ', 22),
+(18, 'El pensamiento concreto es un proceso cognitivo que se caracteriza por la descripción de los hechos y los objetos tangibles', 23),
+(19, ' entre los 7 y los 12 años', 24),
+(20, 'Mientras el pensamiento concreto es el que nos permite procesar y describir los objetos del mundo físico, el pensamiento abstracto ocurre mediante procesos puramente mentales', 25),
+(21, 'El TDA es un trastorno común de la infancia y puede afectar a los niños de distintas maneras. El TDA hace que a un niño le sea difícil concentrarse y prestar atención. Algunos niños pueden ser hiperactivos o tener problemas para tener paciencia. El T', 17),
+(22, 'Distraerse fácilmente y olvidarse las cosas con frecuencia Cambiar rápidamente de una actividad a otra Tener problemas para seguir instrucciones Soñar despiertos/fantasear demasiado Tener problemas para terminar cosas como la tarea y los quehaceres d', 18),
+(23, 'El TDAH es un trastorno común de la infancia y puede afectar a los niños de distintas maneras. El TDA hace que a un niño le sea difícil concentrarse y prestar atención. Algunos niños pueden ser hiperactivos o tener problemas para tener paciencia. El ', 26),
+(24, 'Los niños de todos los orígenes pueden tener TDA.  Los adolescentes y adultos también pueden tener TDA.', 27),
+(25, 'Los genes, porque a veces el trastorno es hereditario El plomo que se encuentra en pinturas viejas y repuestos de plomería El fumar y beber alcohol durante el embarazo Algunos daños cerebrales Los aditivos alimentarios como, por ejemplo, los colorant', 28),
+(26, 'El TDA tiene muchos síntomas. Al principio algunos síntomas pueden parecer comportamientos normales de un niño, pero el TDA los empeora y hace que ocurran con mayor frecuencia. Los niños con TDA tienen al menos seis síntomas que comienzan en los prim', 29),
+(27, 'El médico de su hijo puede hacer un diagnóstico. O a veces, puede mandarlo a ver a un especialista en salud mental que tenga más experiencia con el TDA para que el haga un diagnóstico. No existe una sola prueba que pueda indicar si su hijo tiene TDA.', 30),
+(28, 'Medicamentos, Terapia y Combinación de terapia y medicamentos', 31),
+(29, 'Brinde orientación y comprensión a su hijo. Un especialista puede indicarle a usted cómo ayudar a su hijo hacer cambios positivos. Al apoyar a su hijo, usted ayuda a todos los miembros de la familia, no solo a su hijo. También, hable con los maestros', 32),
+(30, 'Ser adolescente no siempre es fácil. Los adolescentes que tienen TDA pueden pasar malos momentos. La escuela puede ser difícil y algunos adolescentes pueden tomar demasiados riesgos o romper reglas. Pero, al igual que los niños que tienen TDA, los ad', 33),
+(31, 'Apoye a su hijo. Establezca reglas claras para que él o ella pueda seguirlas. Trate de no castigar a su hijo cada vez que rompa las reglas. Hágale saber que usted lo/la puede ayudar.', 34),
+(32, 'Muchos adultos tienen TDA y no lo saben. Al igual que el TDA en los niños y adolescentes, el TDA en los adultos puede dificultarles la vida. El TDA puede hacer que a los adultos les sea difícil sentirse organizados, conservar un empleo, o llegar al t', 35);
 
 -- --------------------------------------------------------
 
@@ -254,7 +309,36 @@ CREATE TABLE `RESPUESTA_CAMPO` (
 INSERT INTO `RESPUESTA_CAMPO` (`idRespuestaCampo`, `IdRespuesta`, `IdCuestionarioContestado`) VALUES
 (1, 1, 1),
 (2, 2, 1),
-(3, 3, 1);
+(3, 3, 1),
+(4, 4, 5),
+(5, 5, 6),
+(6, 6, 6),
+(7, 7, 6),
+(8, 8, 8),
+(9, 9, 8),
+(10, 10, 11),
+(11, 11, 11),
+(12, 12, 11),
+(13, 13, 12),
+(14, 14, 12),
+(15, 15, 12),
+(16, 16, 12),
+(17, 17, 12),
+(18, 18, 13),
+(19, 19, 13),
+(20, 20, 13),
+(21, 21, 14),
+(22, 22, 14),
+(23, 23, 14),
+(24, 24, 14),
+(25, 25, 14),
+(26, 26, 14),
+(27, 27, 14),
+(28, 28, 14),
+(29, 29, 14),
+(30, 30, 14),
+(31, 31, 14),
+(32, 32, 14);
 
 -- --------------------------------------------------------
 

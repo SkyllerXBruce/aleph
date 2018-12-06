@@ -49,6 +49,6 @@
 	<br>
 	<!-- Boton para el Agregar Todos los Datos Ingresados -->
   <div class="form-group">
-    <input type="submit" class="btn btn-primary" value="Dar de Alta Cuestionario">
+    <input type="submit" class="btn btn-primary" value="Dar de Alta Reactivo">
   </div>
 </form>

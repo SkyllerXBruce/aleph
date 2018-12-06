@@ -13,6 +13,20 @@ class Analiza extends CI_Model{
 		$this->db->where('IdCuestionarioContestado',$idquestdone);
 		$data = $this->db->get('RESPUESTA_CAMPO');
     return $data->result(); // se regresa la tupla de los datos encontrados
+	}
+	
+	public function buscarQuestDonePorId($idquestdone){
+		// Buscamos los datos en la base de datos
+		$this->db->where('IdCuestionarioContestado',$idquestdone);
+		$data = $this->db->get('CUESTIONARIO_CONTESTADO');
+    return $data->result(); // se regresa la tupla de los datos encontrados
+	}
+	
+	public function buscarUserPorId($iduser){
+		// Buscamos los datos en la base de datos
+		$this->db->where('Id',$iduser);
+		$data = $this->db->get('USUARIOS');
+    return $data->result(); // se regresa la tupla de los datos encontrados
   }
   
   public function buscarRespuestaPorId($idresp){

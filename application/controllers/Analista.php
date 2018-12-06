@@ -88,8 +88,7 @@ class Analista extends CI_Controller {
     //Le ponemos un nombre al archivo que se va a generar.
     $archivo = "{$study[0]->Estudio}-{$quest[0]->Nombre_Cuestionario}-{$user[0]->Nombre_Usuario}-{$questdone[0]->Nombre_Encuestado}.xls";
     header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-		header('Content-Disposition: attachment;filename="'.$archivo.'"');
-		header('Content-Disposition: attachment;filename="Resumen_20170223.xlsx"; charset=utf-8' );
+		header('Content-Disposition: attachment;filename="'.$archivo.'"; charset=utf-8' );
     header('Cache-Control: max-age=0');
     $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
     //Hacemos una salida al navegador con el archivo Excel.
